@@ -4,12 +4,10 @@ import cat.itacademy.barcelonactiva.Magester.Jordi.s05.t01.n03.Model.Dto.FlowerD
 import cat.itacademy.barcelonactiva.Magester.Jordi.s05.t01.n03.Model.Services.FlowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.Flow;
 
 @RestController
 @RequestMapping("/flower")
@@ -37,5 +35,16 @@ public class FlowerController {
         }else{
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/clientPostFlower")
+    public void add(@RequestBody FlowerDto flowerDto){
+        flowerService.postFlower(flowerDto);
+    }
+
+    @DeleteMapping("clientDeleteFlower/{id}")
+    public void delete(@PathVariable("id") Integer id){
+
+            flowerService.deleteFlower(id);
     }
 }

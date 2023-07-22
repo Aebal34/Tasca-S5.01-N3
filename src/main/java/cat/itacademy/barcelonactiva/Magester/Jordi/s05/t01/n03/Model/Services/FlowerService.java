@@ -34,4 +34,25 @@ public class FlowerService implements IFlowerService{
                 .bodyToMono(FlowerDto.class)
                 .block();
     }
+
+    @Override
+    public void postFlower(FlowerDto flowerDto) {
+
+        webClient.post()
+                .uri("/flowers/add")
+                .bodyValue(flowerDto)
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+    }
+
+    @Override
+    public void deleteFlower(Integer pk_ID) {
+        webClient.delete()
+                .uri("/flowers/delete/{id}", pk_ID)
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+    }
+
 }

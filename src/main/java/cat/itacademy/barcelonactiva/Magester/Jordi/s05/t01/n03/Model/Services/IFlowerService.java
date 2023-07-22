@@ -7,7 +7,11 @@ import java.util.List;
 
 public interface IFlowerService {
 
-    public List<FlowerDto> getAllFlowers();
+    List<FlowerDto> getAllFlowers();
 
-    public FlowerDto getFlower(Integer pk_ID);
+    FlowerDto getFlower(Integer pk_ID);
+
+    void postFlower(FlowerDto flowerDto);
+
+    void deleteFlower(Integer pk_ID);
 }
