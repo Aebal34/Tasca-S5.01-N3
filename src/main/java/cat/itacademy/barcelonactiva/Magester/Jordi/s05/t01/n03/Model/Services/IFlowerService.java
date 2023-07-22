@@ -8,4 +8,6 @@ import java.util.List;
 public interface IFlowerService {
 
     public List<FlowerDto> getAllFlowers();
+
+    public FlowerDto getFlower(Integer pk_ID);
 }

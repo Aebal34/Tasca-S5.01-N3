@@ -25,4 +25,13 @@ public class FlowerService implements IFlowerService{
                 .collectList()
                 .block();
     }
+
+    @Override
+    public FlowerDto getFlower(Integer pk_ID) {
+        return webClient.get()
+                .uri("/flowers/getOne/{id}", pk_ID)
+                .retrieve()
+                .bodyToMono(FlowerDto.class)
+                .block();
+    }
 }

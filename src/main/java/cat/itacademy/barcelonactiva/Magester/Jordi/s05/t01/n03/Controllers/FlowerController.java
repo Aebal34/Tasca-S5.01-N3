@@ -5,6 +5,7 @@ import cat.itacademy.barcelonactiva.Magester.Jordi.s05.t01.n03.Model.Services.Fl
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +22,20 @@ public class FlowerController {
     @GetMapping("/clientAllFlowers")
     public ResponseEntity<List<FlowerDto>> getAll(){
 
-        System.out.println(flowerService.getAllFlowers());
-
         if(flowerService.getAllFlowers().isEmpty()){
             return ResponseEntity.notFound().build();
         }else{
             return ResponseEntity.ok(flowerService.getAllFlowers());
+        }
+    }
+
+    @GetMapping("/clientGetOneFlower/{id}")
+    public ResponseEntity<FlowerDto> getOne(@PathVariable("id") Integer pk_ID){
+
+        if(flowerService.getFlower(pk_ID) != null){
+            return ResponseEntity.ok(flowerService.getFlower(pk_ID));
+        }else{
+            return ResponseEntity.notFound().build();
         }
     }
 }
