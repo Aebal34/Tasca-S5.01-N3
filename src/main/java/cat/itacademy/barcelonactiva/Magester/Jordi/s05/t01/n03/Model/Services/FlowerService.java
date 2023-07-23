@@ -55,4 +55,27 @@ public class FlowerService implements IFlowerService{
                 .block();
     }
 
+    @Override
+    public void updateFlower(Integer id, String name, String country) {
+
+        FlowerDto flowerDto = getFlower(id);
+        if (flowerDto != null){
+            String newName = "";
+            String newCountry = "";
+
+            if(name != null){
+                newName = "&name="+name;
+            }
+            if(country != null){
+                newCountry = "&country="+country;
+            }
+
+            webClient.put()
+                    .uri("/flowers/update?id="+id+newName+newCountry)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .block();
+        }
+    }
+
 }

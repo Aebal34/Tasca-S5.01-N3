@@ -14,4 +14,6 @@ public interface IFlowerService {
     void postFlower(FlowerDto flowerDto);
 
     void deleteFlower(Integer pk_ID);
+
+    void updateFlower(Integer pk_ID, String name, String country);
 }
